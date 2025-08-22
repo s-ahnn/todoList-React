@@ -60,22 +60,22 @@
   gap: 10px;
 }
 
-#todoContainer {
+.todoContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
 
-#Todo {
+.Todo {
   border: 1px solid black;
-  width: 80%;
+  width: 70%;
   height: 35px;
   padding-left: 10px;
   border-radius: 5px;
 }
 
-#Todo:focus {
+.Todo:focus {
   outline-color: black;
 }
 
@@ -89,4 +89,10 @@
 
 #Todos button:focus {
   outline-color: black;
+}
+
+.check {
+  width: 30px;
+  height: 30px;
+  accent-color: black;
 }

@@ -4,8 +4,9 @@ function Todos({haveTo}) {
         <div id="Todos">
             {haveTo.map((item, idx) => {
                 return (
-                    <div id="todoContainer">
-                        <input id="Todo" value={item} readOnly/>
+                    <div className="todoContainer" key={idx}>
+                        <input type="checkbox" className="check"/>
+                        <input className="Todo" value={item} readOnly/>
                         <button>수정</button>
                         <button>삭제</button>
                     </div>
