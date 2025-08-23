@@ -11,6 +11,7 @@ function AddTodo({setHaveTo, haveTo}) {
     const onClickAdd = () => {
         setHaveTo([...haveTo, text]);
         inputRef.current.value = '';
+        inputRef.current.focus();
     }
 
     return (
