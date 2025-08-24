@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 
-function AddTodo({setHaveTo}) {
+function AddTodo({setHaveTo, haveTo}) {
     const [text, setText] = useState("");
     const inputRef = useRef('');
 
@@ -9,7 +9,7 @@ function AddTodo({setHaveTo}) {
     }
 
     const onClickAdd = () => {
-        setHaveTo(text);
+        setHaveTo([...haveTo, text]);
         inputRef.current.value = '';
     }
 
