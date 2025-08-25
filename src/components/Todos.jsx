@@ -1,13 +1,30 @@
-function Todos({haveTo}) {
-    console.log(haveTo);
+import { useEffect, useState } from "react";
+
+function Todos({haveTo, setHaveTo}) {
+    const [editting, setEditting] = useState(false);
+    const [editButtText, setEditButtText] = useState('수정');
+
+    const edit = () => {
+        setEditting(!editting);
+    }
+
+    useEffect(() => {
+        if (editting === false) {
+            setEditButtText('수정');
+        } else {
+            setEditButtText('완료');
+        }
+    }, [editting])
+
     return (
         <div id="Todos">
             {haveTo.map((item, idx) => {
+                console.log(item, idx);
                 return (
                     <div className="todoContainer" key={idx}>
                         <input type="checkbox" className="check"/>
-                        <input className="Todo" value={item} readOnly/>
-                        <button>수정</button>
+                        <input className="Todo" defaultValue={haveTo[idx]} readOnly={editting === false ? true : false}/>
+                        <button onClick={edit}>{editButtText}</button>
                         <button>삭제</button>
                     </div>
                 )

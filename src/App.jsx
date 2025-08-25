@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <AddTodo setHaveTo={setHaveTo} haveTo={haveTo}/>
-      <Todos haveTo={haveTo}/>
+      <Todos haveTo={haveTo} setHaveTo={setHaveTo}/>
     </>
   )
 }
