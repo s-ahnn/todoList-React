@@ -8,6 +8,7 @@ function App() {
 
   return (
     <>
+      <h2 id='title'>To do List</h2>
       <AddTodo setHaveTo={setHaveTo} haveTo={haveTo}/>
       <Todos haveTo={haveTo} setHaveTo={setHaveTo}/>
     </>
