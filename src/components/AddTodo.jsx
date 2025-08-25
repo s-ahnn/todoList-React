@@ -9,10 +9,11 @@ function AddTodo({setHaveTo, haveTo}) {
         setText(e.target.value);
     }
 
-    const onClickAdd = () => {
+    const onClickAdd = (text) => {
         const newTodo = {
             id: uuidv4(),
-            text: text
+            text: text,
+            isEdit: false
         }
         setHaveTo([...haveTo, newTodo]);
         inputRef.current.value = '';
@@ -24,7 +25,7 @@ function AddTodo({setHaveTo, haveTo}) {
         <div id="Add">
             <input type='text' onChange={onChange} ref={inputRef}/>
             <button 
-            onClick={onClickAdd} 
+            onClick={() => onClickAdd(text)} 
             disabled={text === "" ? true : false}>추가</button>
         </div>
     )

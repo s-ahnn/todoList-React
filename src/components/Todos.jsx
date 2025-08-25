@@ -1,20 +1,7 @@
-import { useEffect, useState } from "react";
-
 function Todos({haveTo, setHaveTo}) {
-    const [editting, setEditting] = useState(false);
-    const [editButtText, setEditButtText] = useState('수정');
-
-    const edit = () => {
-        setEditting(!editting);
+    const edit = (id) => {
+        setHaveTo(haveTo.map(item => item.id === id ? {...item, isEdit: !item.isEdit} : item))
     }
-
-    useEffect(() => {
-        if (editting === false) {
-            setEditButtText('수정');
-        } else {
-            setEditButtText('완료');
-        }
-    }, [editting])
 
     const handleChangeEdit = (idx, value) => {
         const newTodos = [...haveTo];
@@ -23,7 +10,7 @@ function Todos({haveTo, setHaveTo}) {
     }
 
     const handleClickDelete = (id) => {
-        const newTodos = haveTo.filter((todo) => todo.id != id);
+        const newTodos = haveTo.filter((todo) => todo.id !== id);
         setHaveTo(newTodos)
     }
 
@@ -36,9 +23,9 @@ function Todos({haveTo, setHaveTo}) {
                         <input type="checkbox" className="check"/>
                         <input className="Todo" 
                         defaultValue={item.text} 
-                        readOnly={editting === false ? true : false} 
+                        readOnly={item.isEdit === false ? true : false} 
                         onChange={(e) => handleChangeEdit(item.id, e.target.value)}/>
-                        <button onClick={edit}>{editButtText}</button>
+                        <button onClick={() => edit(item.id)}>{item.isEdit ? '완료' : '수정'}</button>
                         <button onClick={() => handleClickDelete(item.id)}>삭제</button>
                     </div>
                 )
