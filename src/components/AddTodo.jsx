@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 
 function AddTodo({setHaveTo, haveTo}) {
     const [text, setText] = useState("");
@@ -9,7 +10,11 @@ function AddTodo({setHaveTo, haveTo}) {
     }
 
     const onClickAdd = () => {
-        setHaveTo([...haveTo, text]);
+        const newTodo = {
+            id: uuidv4(),
+            text: text
+        }
+        setHaveTo([...haveTo, newTodo]);
         inputRef.current.value = '';
         inputRef.current.focus();
         setText("");

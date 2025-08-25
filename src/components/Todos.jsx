@@ -22,19 +22,24 @@ function Todos({haveTo, setHaveTo}) {
         setHaveTo(newTodos);
     }
 
+    const handleClickDelete = (id) => {
+        const newTodos = haveTo.filter((todo) => todo.id != id);
+        setHaveTo(newTodos)
+    }
+
     return (
         <div id="Todos">
             {haveTo.map((item, idx) => {
                 console.log(item, idx);
                 return (
-                    <div className="todoContainer" key={idx}>
+                    <div className="todoContainer" key={item.id}>
                         <input type="checkbox" className="check"/>
                         <input className="Todo" 
-                        defaultValue={haveTo[idx]} 
+                        defaultValue={item.text} 
                         readOnly={editting === false ? true : false} 
-                        onChange={(e) => handleChangeEdit(idx, e.target.value)}/>
+                        onChange={(e) => handleChangeEdit(item.id, e.target.value)}/>
                         <button onClick={edit}>{editButtText}</button>
-                        <button>삭제</button>
+                        <button onClick={() => handleClickDelete(item.id)}>삭제</button>
                     </div>
                 )
             })}
