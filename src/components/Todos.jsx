@@ -16,6 +16,12 @@ function Todos({haveTo, setHaveTo}) {
         }
     }, [editting])
 
+    const handleChangeEdit = (idx, value) => {
+        const newTodos = [...haveTo];
+        newTodos[idx] = value;
+        setHaveTo(newTodos);
+    }
+
     return (
         <div id="Todos">
             {haveTo.map((item, idx) => {
@@ -23,7 +29,10 @@ function Todos({haveTo, setHaveTo}) {
                 return (
                     <div className="todoContainer" key={idx}>
                         <input type="checkbox" className="check"/>
-                        <input className="Todo" defaultValue={haveTo[idx]} readOnly={editting === false ? true : false}/>
+                        <input className="Todo" 
+                        defaultValue={haveTo[idx]} 
+                        readOnly={editting === false ? true : false} 
+                        onChange={(e) => handleChangeEdit(idx, e.target.value)}/>
                         <button onClick={edit}>{editButtText}</button>
                         <button>삭제</button>
                     </div>
