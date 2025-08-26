@@ -16,6 +16,11 @@ function Todos({haveTo, setHaveTo}) {
 
     const handleClickCheck = (id) => {
         setHaveTo(haveTo.map(item => item.id === id ? {...item, isChecked: !item.isChecked} : item))
+        setHaveTo((prev) => {
+            const done = prev.find(todo => todo.id === id);
+            const rest = prev.filter(todo => todo.id !== id);
+            return [...rest, done];
+        })
     }
 
     return (
