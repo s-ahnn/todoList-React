@@ -14,14 +14,18 @@ function Todos({haveTo, setHaveTo}) {
         setHaveTo(newTodos)
     }
 
+    const handleClickCheck = (id) => {
+        setHaveTo(haveTo.map(item => item.id === id ? {...item, isChecked: !item.isChecked} : item))
+    }
+
     return (
         <div id="Todos">
             {haveTo.map((item, idx) => {
                 console.log(item, idx);
                 return (
                     <div className="todoContainer" key={item.id}>
-                        <input type="checkbox" className="check"/>
-                        <input className="Todo" 
+                        <input type="checkbox" className="check" onClick={() => handleClickCheck(item.id)}/>
+                        <input className={`Todo ${item.isChecked ? "checked" : "nonChecked"}`}
                         defaultValue={item.text} 
                         readOnly={item.isEdit === false ? true : false} 
                         onChange={(e) => handleChangeEdit(item.id, e.target.value)}/>

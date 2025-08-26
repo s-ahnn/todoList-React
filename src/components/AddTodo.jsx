@@ -13,6 +13,7 @@ function AddTodo({setHaveTo, haveTo}) {
         const newTodo = {
             id: uuidv4(),
             text: text,
+            isChecked: false,
             isEdit: false
         }
         setHaveTo([...haveTo, newTodo]);

@@ -102,3 +102,9 @@
   height: 30px;
   accent-color: black;
 }
+
+.checked {
+  color: gray;
+  text-decoration: line-through;
+  font-style: oblique;
+}
