@@ -4,23 +4,10 @@ import AddTodo from './components/AddTodo'
 import Todos from './components/Todos'
 
 function App() {
-  const [haveTo, setHaveTo] = useState([]);
-
-  useEffect(() => {
-    try {
-      const savedTodos = localStorage.getItem('savedTodos');
-  
-      if (savedTodos) {
-        const parsedTodo = JSON.parse(savedTodos);
-        setHaveTo(parsedTodo);
-      } else {
-        setHaveTo([]);
-      }
-    } catch (e) {
-      console.error("로컬스토리지 파싱 오류:", e);
-      setHaveTo([]);
-    }
-  }, []);
+  const [haveTo, setHaveTo] = useState(() => {
+    const saved = localStorage.getItem("savedTodos");
+    return saved ? JSON.parse(saved) : [];
+  });
   
   useEffect(() => {
     try {
